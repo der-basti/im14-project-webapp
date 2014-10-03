@@ -1,4 +1,4 @@
-package de.th.wildau.webapp;
+package de.th.wildau.webapp.homes;
 
 import javax.inject.Named;
 
