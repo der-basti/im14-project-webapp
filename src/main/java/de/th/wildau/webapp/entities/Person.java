@@ -1,7 +1,10 @@
 package de.th.wildau.webapp.entities;
 
+import javax.validation.constraints.Size;
+
 import de.th.wildau.webapp.enumeration.Gender;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 /**
@@ -13,12 +16,18 @@ import lombok.Setter;
 @Setter
 public class Person extends LabeldEntity {
 
+	@NonNull
 	private Gender gender;
 	
+	@Size(min=1, max=63)
 	private String title;
 	
+	@NonNull
+	@Size(min=1, max=255)
 	private String firstname;
 
+	@NonNull
+	@Size(min=1, max=255)
 	private String lastname;
 
 	@Override

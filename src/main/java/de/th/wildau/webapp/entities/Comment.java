@@ -2,7 +2,11 @@ package de.th.wildau.webapp.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
+
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 /**
@@ -14,10 +18,13 @@ import lombok.Setter;
 @Setter
 public class Comment extends LabeldEntity {
 
+	@NonNull
 	private User user;
 
+	@NonNull
 	private Date created;
 
+	@Size(min=1, max=255)
 	private String comment;
 
 	@Override
