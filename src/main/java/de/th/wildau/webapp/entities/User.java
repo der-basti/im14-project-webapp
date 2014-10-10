@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class User extends LabeldEntity {
+public class User extends LabeledEntity {
 
 	@NonNull
 	@Size(min = 3, max = 100)

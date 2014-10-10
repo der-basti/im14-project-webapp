@@ -9,6 +9,9 @@
 <title>im14-project-webapp</title>
 </head>
 <body>
-	<h1>Hello #{helloHome.projectName}</h1>
+	<c:forEach var="comment">
+		<h1 class="#{comment.user.role == UserRole.ADMIN ? 'blueBorder'}">Hello #{helloHome.projectName}</h1>
+		foo bar
+	</c:forEach>
 </body>
 </html>

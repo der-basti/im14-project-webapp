@@ -16,7 +16,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Comment extends LabeldEntity {
+public class Comment extends LabeledEntity {
 
 	@NonNull
 	private User user;

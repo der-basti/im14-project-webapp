@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Person extends LabeldEntity {
+public class Person extends LabeledEntity {
 
 	@NonNull
 	private Gender gender;

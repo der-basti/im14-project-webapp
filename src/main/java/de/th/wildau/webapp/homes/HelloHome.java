@@ -13,5 +13,5 @@ import lombok.Getter;
 @Getter
 public class HelloHome {
 
-	private final String projectName = "im14-project-webapp";
+	private String projectName = "im14-project-webapp sebastian x 2";
 }

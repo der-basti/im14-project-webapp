@@ -4,7 +4,7 @@ package de.th.wildau.webapp.entities;
  * 
  * @author Sebastian Nemak
  */
-public abstract class LabeldEntity extends BaseEntity {
+public abstract class LabeledEntity extends BaseEntity {
 
 	/**
 	 * Abstract entity bean label.
