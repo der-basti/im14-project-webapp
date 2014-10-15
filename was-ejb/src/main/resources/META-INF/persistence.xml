@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+	<persistence-unit name="was-ejbPU">
+		<description>was Unit</description>
+		<jta-data-source>jdbc/datasources/wasDS</jta-data-source>
+		<!--provider>org.hibernate.ejb.HibernatePersistence</provider -->
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<!--property name="javax.persistence.sql-load-script-source" value="init_db.sql"/ -->
+
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<!--property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/ -->
+			<property name="hibernate.transaction.flush_before_completion"
+				value="true" />
+
+			<!-- hibernate envers > <property name="hibernate.ejb.event.post-insert" 
+				value="org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener" 
+				/> <property name="hibernate.ejb.event.post-update" value="org.hibernate.ejb.event.EJB3PostUpdateEventListener,org.hibernate.envers.event.AuditEventListener" 
+				/> <property name="hibernate.ejb.event.post-delete" value="org.hibernate.ejb.event.EJB3PostDeleteEventListener,org.hibernate.envers.event.AuditEventListener" 
+				/> <property name="hibernate.ejb.event.pre-collection-update" value="org.hibernate.envers.event.AuditEventListener" 
+				/> <property name="hibernate.ejb.event.pre-collection-remove" value="org.hibernate.envers.event.AuditEventListener" 
+				/> <property name="hibernate.ejb.event.post-collection-recreate" value="org.hibernate.envers.event.AuditEventListener" 
+				/> <property name="org.hibernate.envers.audit_table_prefix" value="envers_" 
+				/> <property name="org.hibernate.envers.audit_table_suffix" value="" /> <property 
+				name="org.hibernate.envers.revision_field_name" value="revision" /> <property 
+				name="org.hibernate.envers.revision_type_field_name" value="revision_type" 
+				/> -->
+		</properties>
+	</persistence-unit>
+</persistence>

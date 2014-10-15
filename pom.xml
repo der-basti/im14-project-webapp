@@ -6,6 +6,32 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>im14-project-webapp</name>
+	<description>TH-Wildau - WIR - IM14 - Web Application Security (was) research paper/project.</description>
+	<inceptionYear>2014</inceptionYear>
+	<organization>
+		<name>Technische Fachhochschule (TH) Wildau</name>
+		<url>http://www.th-wildau.de</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>der-basti</id>
+			<name>Sebastian Nemak</name>
+			<timezone>+2</timezone>
+			<email>mail@der-basti.com</email>
+			<roles>
+				<role>main</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>basti</id>
+			<name>Sebastian Förster</name>
+			<timezone>+2</timezone>
+			<email>SebastianFo91@googlemail.com</email>
+			<roles>
+				<role>main</role>
+			</roles>
+		</developer>
+	</developers>
 	<modules>
 		<module>was-ear</module>
 		<module>was-ejb</module>
@@ -13,5 +39,31 @@
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
+	<dependencyManagement>
+		<!--dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency-->
+	</dependencyManagement>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
