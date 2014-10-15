@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:application="http://java.sun.com/xml/ns/javaee/application_7.xsd"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:application="http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/application_7.xsd"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/application_7.xsd"
 	id="was_id" version="7">
 	<display-name>was-ear</display-name>
@@ -9,7 +10,7 @@
 	</module>
 	<module>
 		<web>
-			<web-uri>was-web.war</web-uri>
+			<web-uri>was-war.war</web-uri>
 			<context-root>was</context-root>
 		</web>
 	</module>
