@@ -15,10 +15,14 @@
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<javaee.version>7.0</javaee.version>
-		<hibernate.version>4.0.1.Final</hibernate.version>
+		<hibernate.version>4.3.6.Final</hibernate.version>
 		<lombok.version>1.14.8</lombok.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
+		<maven.ejb.version>3.1</maven.ejb.version>
+		<maven.dependency.plugin.version>2.6</maven.dependency.plugin.version>
+		<maven.dependency.jee.version>7.0</maven.dependency.jee.version>
 	</properties>
 
 	<dependencies>
@@ -31,6 +35,11 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
@@ -55,15 +64,15 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ejb-plugin</artifactId>
-				<version>2.4</version>
+				<version>${maven.ejb.plugin.version}</version>
 				<configuration>
-					<ejbVersion>3.2</ejbVersion>
+					<ejbVersion>${maven.ejb.version}</ejbVersion>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.9</version>
+				<version>${maven.dependency.plugin.version}</version>
 				<executions>
 					<execution>
 						<phase>validate</phase>
@@ -77,7 +86,7 @@
 								<artifactItem>
 									<groupId>javax</groupId>
 									<artifactId>javaee-endorsed-api</artifactId>
-									<version>7.0</version>
+									<version>${maven.dependency.jee.version}</version>
 									<type>jar</type>
 								</artifactItem>
 							</artifactItems>

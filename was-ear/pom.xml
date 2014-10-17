@@ -15,19 +15,23 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<ejb.version>0.0.1-SNAPSHOT</ejb.version>
+		<war.version>0.0.1-SNAPSHOT</war.version>
+		<maven.ear.plugin.version>2.9.1</maven.ear.plugin.version>
+		<maven.ear.version>7</maven.ear.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>de.th.wildau.was</groupId>
 			<artifactId>was-ejb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${ejb.version}</version>
 			<type>ejb</type>
 		</dependency>
 		<dependency>
 			<groupId>de.th.wildau.was</groupId>
 			<artifactId>was-war</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${war.version}</version>
 			<type>war</type>
 		</dependency>
 	</dependencies>
@@ -38,9 +42,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>${maven.ear.plugin.version}</version>
 				<configuration>
-					<version>7</version>
+					<version>${maven.ear.version}</version>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 				</configuration>
 			</plugin>

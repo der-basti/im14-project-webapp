@@ -12,22 +12,27 @@
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<was.ejb.version>0.0.1-SNAPSHOT</was.ejb.version>
+		<javaee.web.version>7.0</javaee.web.version>
 		<lombok.version>1.14.8</lombok.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.war.plugin.version>2.4</maven.war.plugin.version>
+		<maven.dependency.plugin.version>2.9</maven.dependency.plugin.version>
+		<maven.dependency.jee.version>7.0</maven.dependency.jee.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>de.th.wildau.was</groupId>
 			<artifactId>was-ejb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${was.ejb.version}</version>
 			<type>ejb</type>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
-			<version>7.0</version>
+			<version>${javaee.web.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- lombok framework -->
@@ -56,7 +61,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.5</version>
+				<version>${maven.war.plugin.version}</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
@@ -64,7 +69,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.9</version>
+				<version>${maven.dependency.plugin.version}</version>
 				<executions>
 					<execution>
 						<phase>validate</phase>
@@ -78,7 +83,7 @@
 								<artifactItem>
 									<groupId>javax</groupId>
 									<artifactId>javaee-endorsed-api</artifactId>
-									<version>7.0</version>
+									<version>${maven.dependency.jee.version}</version>
 									<type>jar</type>
 								</artifactItem>
 							</artifactItems>
