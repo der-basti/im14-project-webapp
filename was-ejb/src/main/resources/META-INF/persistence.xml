@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
-	version="2.1">
-	<persistence-unit name="wasPU" transaction-type="JTA">
-		<jta-data-source>jdbc/sample</jta-data-source>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="primary">
+		<!-- If you are running in a production environment, add a managed data 
+			source, this example data source is just for development and testing! -->
+		<!-- The datasource is deployed as <EAR>/META-INF/was-ds.xml, you can find 
+			it in the source at ear/src/main/application/META-INF/was-ds.xml -->
+		<jta-data-source>java:jboss/datasources/wasDS</jta-data-source>
+		<properties>
+			<!-- Properties for Hibernate -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+		</properties>
 	</persistence-unit>
 
-	<!--description>was Unit</description> <provider>org.hibernate.ejb.HibernatePersistence</provider> 
-		<properties> <property name="hibernate.hbm2ddl.auto" value="create-drop" 
-		/> <property name="javax.persistence.sql-load-script-source" value="init_db.sql" 
-		/> <property name="hibernate.show_sql" value="true" /> <property name="hibernate.format_sql" 
-		value="true" /> <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/> 
-		<property name="hibernate.transaction.flush_before_completion" value="true" 
-		/> < hibernate envers > <property name="hibernate.ejb.event.post-insert" 
-		value="org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener" 
-		/> <property name="hibernate.ejb.event.post-update" value="org.hibernate.ejb.event.EJB3PostUpdateEventListener,org.hibernate.envers.event.AuditEventListener" 
-		/> <property name="hibernate.ejb.event.post-delete" value="org.hibernate.ejb.event.EJB3PostDeleteEventListener,org.hibernate.envers.event.AuditEventListener" 
-		/> <property name="hibernate.ejb.event.pre-collection-update" value="org.hibernate.envers.event.AuditEventListener" 
-		/> <property name="hibernate.ejb.event.pre-collection-remove" value="org.hibernate.envers.event.AuditEventListener" 
-		/> <property name="hibernate.ejb.event.post-collection-recreate" value="org.hibernate.envers.event.AuditEventListener" 
-		/> <property name="org.hibernate.envers.audit_table_prefix" value="envers_" 
-		/> <property name="org.hibernate.envers.audit_table_suffix" value="" /> <property 
-		name="org.hibernate.envers.revision_field_name" value="revision" /> <property 
-		name="org.hibernate.envers.revision_type_field_name" value="revision_type" 
-		/> </properties -->
 </persistence>

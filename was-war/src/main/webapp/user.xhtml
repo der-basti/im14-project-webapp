@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h1>Users</h1>
+		<h:panelGroup rendered="#{empty userHome.users}">
+			<em>No users.</em>
+		</h:panelGroup>
+		<h:dataTable var="_user" value="#{userHome.users}"
+			rendered="#{not empty userHome.users}"
+			styleClass="table table-striped">
+			<h:column>
+				<f:facet name="header">E-Mail</f:facet>
+                #{_user.email}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Password</f:facet>
+                #{_user.password}
+            </h:column>
+			<f:facet name="footer">password are SHA256 hashed</f:facet>
+		</h:dataTable>
+
+		<h:form id="reg">
+			<h1>Create User</h1>
+			<h:panelGrid columns="3">
+				<h:outputLabel for="email" value="E-Mail" />
+				<h:inputText id="email" value="#{userHome.user.email}" />
+				<h:message for="email" errorClass="error" />
+
+				<h:outputLabel for="password" value="Password" />
+				<h:inputSecret id="password" value="#{userHome.user.password}" />
+				<h:message for="password" errorClass="error" />
+			</h:panelGrid>
+			<h:commandButton id="register" action="#{userHome.register}"
+				value="Register" />
+		</h:form>
+	</ui:define>
+</ui:composition>

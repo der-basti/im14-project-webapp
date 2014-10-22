@@ -1,0 +1,88 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 0.8em;
+	color: #363636;
+}
+
+#footer {
+	clear: both;
+	text-align: center;
+	color: #666666;
+	font-size: 0.85em;
+}
+
+a {
+	color: #4a5d75;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #369;
+	text-decoration: underline;
+}
+
+label {
+	float: left;
+	width: 15%;
+	font-weight: bold;
+}
+
+span.error {
+	color: red;
+}
+
+/* ========== message style ========== */
+.messages {
+	font-weight: bold;
+	list-style-type: none;
+}
+
+li.error {
+	color: red;
+}
+
+li.info {
+	color: green;
+}
+
+/* ========== table style ========== */
+table {
+	clear: both;
+	width: 100%;
+}
+
+table td {
+	height: 2em;
+	padding-left: 6px;
+	font-size: 11px;
+	padding: 5px 5px;
+}
+
+table th {
+	background-color: gray;
+	font-weight: bold;
+}
+
+table thead {
+	background-color: gray;
+	font-weight: bold;
+}
+
+table tfoot {
+	height: 20px;
+	font-size: 10px;
+	font-weight: bold;
+	background-color: #EAECEE;
+	text-align: center;
+}
+
+/* Using new CSS3 selectors for styling*/
+table .dataTable tr:nth-child(odd) {
+	background: #f4f3f3;
+}
+
+table .dataTable tr:nth-child(even) {
+	background: #ffffff;
+}
