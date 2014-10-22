@@ -16,7 +16,7 @@ import lombok.Setter;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 
-import de.th.wildau.im14.was.model.User;
+import de.th.wildau.im14.was.model.Users;
 import de.th.wildau.im14.was.service.UserService;
 
 @Named
@@ -33,11 +33,11 @@ public class UserHome implements Serializable {
 
 	@Getter
 	@Setter
-	private User user;
+	private Users user;
 
-	private List<User> users;
+	private List<Users> users;
 
-	public List<User> getUsers() {
+	public List<Users> getUsers() {
 		this.users = this.userService.findAllOrderedByEmail();
 		return this.users;
 	}
@@ -78,6 +78,6 @@ public class UserHome implements Serializable {
 
 	@PostConstruct
 	public void initNewUser() {
-		this.user = new User();
+		this.user = new Users();
 	}
 }
