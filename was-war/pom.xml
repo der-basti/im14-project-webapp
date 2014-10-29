@@ -68,8 +68,12 @@
 			</exclusions>
 		</dependency>
 
-		<!-- Lombok framework project > <dependency> <groupId>org.projectlombok</groupId> 
-			<artifactId>lombok</artifactId> <version>1.14.8</version> </dependency -->
+		<!-- Lombok framework project -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.14.8</version>
+		</dependency>
 
 		<!-- Utilities -->
 		<dependency>
@@ -77,6 +81,12 @@
 			<artifactId>guava</artifactId>
 			<version>18.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+			<artifactId>owasp-java-html-sanitizer</artifactId>
+			<version>r239</version>
+		</dependency>
+
 
 	</dependencies>
 
@@ -88,7 +98,7 @@
 				<version>${version.war.plugin}</version>
 				<configuration>
 					<!-- Java EE 7 doesn't require web.xml, Maven needs to catch up! -->
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<failOnMissingWebXml>true</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="content">
+		<h1>
+			<h:outputText value="#{i18n.signupTitle}" />
+		</h1>
+
+		<h:form id="frmSignup">
+			<h:panelGrid columns="3">
+				<h:outputLabel for="email" value="#{i18n.signupEmail} *" />
+				<h:inputText id="email" value="#{signupHome.email}" required="true" />
+				<h:message for="email" />
+
+				<h:outputLabel for="password" value="#{i18n.signupPassword} *" />
+				<h:inputSecret id="password" value="#{signupHome.password}"
+					required="true">
+					<!--f:validator validatorId="confirmValidator" />
+					<f:attribute name="confirm"
+						value="#{signupHome.passwordConfirm}" />
+					<f:ajax event="blur" execute="password confirm" render="m_password" /-->
+				</h:inputSecret>
+				<h:message id="m_password" for="password" />
+
+				<h:outputLabel for="passwordConfirm"
+					value="#{i18n.signupPasswordConfirm} *" />
+				<h:inputSecret id="confirm" value="#{signupHome.passwordConfirm}"
+					required="true">
+					<!--f:ajax event="blur" execute="password confirm"
+						render="m_password m_confirm" /-->
+				</h:inputSecret>
+				<h:message id="m_confirm" for="password" />
+
+				<h:outputLabel for="passwordConfirm" value="#{i18n.signupTyp} *" />
+				<h:selectOneRadio id="selection" value="#{signupHome.user}" required="true">
+					<f:selectItems value="#{signupHome.selectItems}" />
+					<f:ajax event="change" render="details" />
+				</h:selectOneRadio>
+			</h:panelGrid>
+
+			<h:panelGroup id="details">
+				<!-- USER -->
+				<h:panelGrid id="userGroup" columns="3"
+					rendered="#{signupHome.user}">
+					USER
+					<!--ui:include src=""></ui:include>
+					<ui:insert></ui:insert-->
+				</h:panelGrid>
+				<!-- COMPANY -->
+				<h:panelGrid id="companyGroup" columns="3"
+					rendered="#{not signupHome.user}">
+					COMPANY
+				</h:panelGrid>
+			</h:panelGroup>
+
+			<h:commandButton id="btnSignup" value="#{i18n.signupBtn}"
+				action="#{signupHome.signup}" />
+		</h:form>
+	</ui:define>
+</ui:composition>

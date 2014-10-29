@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="content">
+
+		<h:form prependId="false">
+			<h3>Cross-site request forgery protection</h3>
+
+			<p>Go to a protected page via postback</p>
+			generates a POST request to csrf_protected_page as defined in the action attribute
+			<p>
+				<h:commandButton id="button_postback" value="Go to protected view"
+					action="/csrf_protected_page" />
+			</p>
+
+			<hr />
+
+			<p>Go to a protected page via non-postback</p>
+			generates a GET request to csrf_protected_page as defined in the outcome attribute
+			<p>
+				<h:button id="button_non_postback" value="Go to protected view"
+					outcome="/csrf_protected_page" />
+			</p>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

@@ -5,7 +5,22 @@
 
 	<!-- This descriptor activates the JSF 2.0 Servlet -->
 
+	<application>
+		<locale-config>
+			<default-locale>de</default-locale>
+			<supported-locale>de</supported-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>i18n</var>
+		</resource-bundle>
+	</application>
+
 	<!-- Write your navigation rules here. You are encouraged to use CDI for 
 		creating @Named managed beans. -->
+
+	<!--protected-views> <url-pattern>/csrf_protected_page.xhtml</url-pattern> 
+		</protected-views -->
 
 </faces-config>

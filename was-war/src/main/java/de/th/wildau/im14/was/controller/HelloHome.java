@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class HelloHome {
 
-	private String name = "JEE";
+	private String ajax = "JSF ajax";
 
 	private String hello = "Personalvermittlung";
 

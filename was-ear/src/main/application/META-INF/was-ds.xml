@@ -8,7 +8,13 @@
 		in META-INF/persistence.xml -->
 	<datasource jndi-name="java:jboss/datasources/wasDS"
 		pool-name="was-ear" enabled="true" use-java-context="true">
-		<connection-url>jdbc:h2:mem:wasear;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
+
+		<!-- http://www.h2database.com/html/features.html#database_url -->
+
+		<!-- @SebastianFo: http://stackoverflow.com/questions/17824041/hibernate-schemaexport-fails-to-first-create-schema 
+			http://stackoverflow.com/questions/5225700/can-i-have-h2-autocreate-a-schema-in-an-in-memory-database -->
+
+		<connection-url>jdbc:h2:mem:was;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
 		<driver>h2</driver>
 		<security>
 			<user-name>sa</user-name>

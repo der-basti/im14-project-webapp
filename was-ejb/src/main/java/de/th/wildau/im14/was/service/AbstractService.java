@@ -1,12 +1,18 @@
 package de.th.wildau.im14.was.service;
 
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-public abstract class AbstractService<T> {
+import de.th.wildau.im14.was.model.BaseEntity;
+
+public abstract class AbstractService<T extends BaseEntity> implements
+		Serializable {
+
+	private static final long serialVersionUID = 5199886820301686035L;
 
 	@Inject
 	protected Logger log;
@@ -17,17 +23,49 @@ public abstract class AbstractService<T> {
 	@Inject
 	protected Event<T> eventSrc;
 
-	// public T find(Object primaryKey) {
-	// return this.em.find(T.class, primaryKey);
-	// }
+	protected Class<T> classType;
 
-	// public List<T> findAll() {
-	// CriteriaBuilder cb = this.em.getCriteriaBuilder();
-	// CriteriaQuery<T> criteria = cb.createQuery(T.class);
-	// Root<T> types = criteria.from(T.class);
-	// criteria.select(types);// .orderBy(cb.asc(member.get("name")));
-	// return this.em.createQuery(criteria).getResultList();
-	// }
+//	public T find(final Long primaryKeyId, final String fetchRelations) {
+//		return this.em.find(this.classType, primaryKeyId);
+//	}
+//
+//	public List<T> findAll(final String fetchRelations) {
+//		CriteriaBuilder cb = this.em.getCriteriaBuilder();
+//		CriteriaQuery<T> criteria = cb.createQuery(this.classType);
+//		Root<T> types = criteria.from(this.classType);
+//
+//		//addFetches(types, fetchRelations.split(" "));
+//		// sample: "addresses friends.addresses"
+//
+//		criteria.select(types);// .orderBy(cb.asc(member.get("name")));
+//		// criteriaQuery.where(criteriaBuilder.equal(types.get("id"), id))
+//		return this.em.createQuery(criteria).getResultList();
+//	}
+//
+//	protected static <T> void addFetches(Root<T> root, String... fetchRelations) {
+//		for (String relation : fetchRelations) {
+//			FetchParent<T, T> fetch = root;
+//			for (String pathSegment : relation.split(".")) {
+//				fetch = fetch.fetch(pathSegment, JoinType.LEFT);
+//			}
+//		}
+//	}
+//
+//	public T getSingleOrNoneResult(final Long primaryKeyId) {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//		CriteriaQuery<T> criteriaQuery = criteriaBuilder
+//				.createQuery(this.classType);
+//		criteriaQuery.where(criteriaBuilder.equal(
+//				criteriaQuery.from(this.classType).get("id"), primaryKeyId));
+//
+//		TypedQuery<T> query = em.createQuery(criteriaQuery);
+//		query.setMaxResults(1);
+//		List<T> result = query.getResultList();
+//		if (result.isEmpty()) {
+//			return null;
+//		}
+//		return result.get(0);
+//	}
 
 	public void delete(final T entity) {
 		this.log.info("delete: " + entity);

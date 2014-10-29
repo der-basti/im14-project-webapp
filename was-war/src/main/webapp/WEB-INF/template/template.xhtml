@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{localeBean.language}" xmlns="http://www.w3.org/1999/xhtml">
+<f:view locale="#{localeBean.locale}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" contentType="text/html"
+	encoding="UTF-8">
+
+	<h:head>
+		<title>${rootArtifactId}</title>
+		<!-- meta -->
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- styles -->
+		<h:outputStylesheet name="css/bootstrap.v.3.2.0.min.css" />
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<h:outputStylesheet name="css/style.css" />
+	</h:head>
+
+	<h:body>
+		<div class="container">
+
+			<!-- Static navbar -->
+			<h:form>
+				<div class="navbar navbar-default" role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span> <span
+									class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="./"><h:outputText
+									value="#{i18n.templateTitle}" /></a>
+						</div>
+						<div class="navbar-collapse collapse">
+							<ul class="nav navbar-nav">
+								<li><a href="./index.jsf">#{i18n.templateHome}</a></li>
+								<li><a href="./user.jsf">#{i18n.templateUser}</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown">#{i18n.templateLanguage}<b
+										class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><h:commandLink
+												action="#{localeBean.setLanguage('de')}"
+												styleClass="menu-de" immediate="true">
+												<f:ajax render="@all" />
+												<h:outputText value="#{i18n.templateLanguageDe}" />
+											</h:commandLink></li>
+										<li><h:commandLink
+												action="#{localeBean.setLanguage('en')}"
+												styleClass="menu-en" immediate="true">
+												<f:ajax render="@all" />
+												<h:outputText value="#{i18n.templateLanguageEn}" />
+											</h:commandLink></li>
+									</ul></li>
+								<!--li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown">Security <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="./csrfExample.jsf">CSRF</a></li>
+										<li class="divider"></li>
+										<li class="dropdown-header">Nav header</li>
+										<li><a href="#">Separated link</a></li>
+									</ul></li-->
+								<li><a href="./signin.jsf">#{i18n.templateSignin}</a></li>
+								<li><a href="./signup.jsf">#{i18n.templateSignup}</a></li>
+								<!--li><a href="./signout.jsf">#{i18n.templateSignup}</a></li-->
+							</ul>
+						</div>
+						<!--/.nav-collapse -->
+					</div>
+					<!--/.container-fluid -->
+				</div>
+			</h:form>
+
+			<h:messages id="messages" globalOnly="true" showDetail="false"
+				styleClass="messages" fatalClass="error" errorClass="error"
+				warnClass="warning" infoClass="info" />
+
+			<ui:insert name="content">Template content will be inserted here</ui:insert>
+
+		</div>
+
+		<h:outputScript name="js/jquery.v.1.11.1.min.js" />
+		<h:outputScript name="js/bootstrap.v.3.2.0.min.js" />
+		<!--h:outputScript target="head">
+            // Add the $() function
+            $ = jQuery;
+            $(document).ready(function () {
+                jQuery.noConflict();
+            });
+        </h:outputScript-->
+
+	</h:body>
+</f:view>
+</html>

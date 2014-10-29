@@ -3,31 +3,20 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/WEB-INF/templates/default.xhtml">
+	template="/WEB-INF/template/template.xhtml">
 
 	<ui:define name="content">
-		<h1 id="headline">Welcome #{helloHome.hello}</h1>
+		<h1 id="headline">#{i18n.indexWelcome} #{helloHome.hello}</h1>
 
-		<h2>AJAX</h2>
 		<h:form id="frmAjax">
 			<h:outputLabel id="labelInputAjax" for="inputAjax"
-				value="#{helloHome.name}" />
+				value="#{helloHome.ajax}" />
 			<br />
-			<h:inputText id="inputAjax" value="#{helloHome.name}">
+			<h:inputText id="inputAjax" value="#{helloHome.ajax}">
 				<f:ajax event="keypress" render="labelInputAjax" />
-				<!-- keypress, valueChange, change -->
+				<!-- events: e.g. keypress, valueChange, change -->
 			</h:inputText>
 		</h:form>
 
-		<!--h2>Login</h2>
-		<h:form id="frmLogin">
-			<h:panelGrid columns="2">
-				<h:outputLabel for="email" value="E-Mail" />
-				<h:inputText id="email" />
-				<h:outputLabel for="pw" value="Password" />
-				<h:inputSecret id="pw" />
-			</h:panelGrid>
-			<h:commandButton id="btnLogin" value="Login" />
-		</h:form-->
 	</ui:define>
 </ui:composition>
