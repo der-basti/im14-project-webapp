@@ -18,13 +18,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import com.google.common.base.Charsets;
-import com.google.common.base.Joiner;
 import com.google.common.hash.Hashing;
 
 import de.th.wildau.im14.was.model.Role;
 import de.th.wildau.im14.was.model.User;
 import de.th.wildau.im14.was.service.UserService;
 
+@Deprecated
 @Named
 @RequestScoped
 public class UserHome implements Serializable {

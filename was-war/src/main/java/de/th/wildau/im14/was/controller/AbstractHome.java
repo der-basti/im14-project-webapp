@@ -7,11 +7,17 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
+
+import lombok.Getter;
 
 public abstract class AbstractHome implements Serializable {
 
 	private static final long serialVersionUID = -7243694648872793544L;
+
+	@Getter
+	private final String rootContext = "was";
 
 	private String getMessage(final FacesContext facesContext,
 			final String msgKey, final Object... args) {
@@ -24,23 +30,24 @@ public abstract class AbstractHome implements Serializable {
 		return MessageFormat.format(msgValue, args);
 	}
 
-	protected void addInfoMessage(final String message,
-			final Object... args) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-				getMessage(context, message, args), null));
+	protected void addInfoMessage(final String message, final Object... args) {
+		addMessage(FacesMessage.SEVERITY_INFO, message, args);
 	}
 
 	protected void addWarningMessage(final String message, final Object... args) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-				getMessage(context, message, args), null));
+		addMessage(FacesMessage.SEVERITY_WARN, message, args);
 	}
 
 	protected void addErrorMessage(final String message, Object... args) {
+		addMessage(FacesMessage.SEVERITY_ERROR, message, args);
+	}
+
+	private void addMessage(final Severity severity, final String message,
+			Object... args) {
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-				getMessage(context, message, args), null));
+		context.addMessage(null,
+				new FacesMessage(severity, getMessage(context, message, args),
+						null));
 	}
 
 	protected String getParam(final String param) {

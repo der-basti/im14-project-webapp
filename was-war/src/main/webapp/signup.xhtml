@@ -4,8 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/template/template.xhtml">
+	
+	<ui:param name="pageTitle" value="#{i18n.signupTitle}" />
 
-	<ui:define name="content">
+	<ui:define name="mainContent">
 		<h1>
 			<h:outputText value="#{i18n.signupTitle}" />
 		</h1>

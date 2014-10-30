@@ -5,18 +5,26 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/template/template.xhtml">
 
-	<ui:define name="content">
-		<h1 id="headline">#{i18n.indexWelcome} #{helloHome.hello}</h1>
+	<ui:param name="pageTitle" value="#{i18n.indexWelcome}" />
+
+	<ui:define name="mainContent">
+		<h1>
+			<h:outputText value="#{i18n.indexWelcome}" />
+		</h1>
+
+		<blockquote>
+			<p>
+				<h:outputText value="#{i18n.indexDescription}" />
+			</p>
+		</blockquote>
 
 		<h:form id="frmAjax">
-			<h:outputLabel id="labelInputAjax" for="inputAjax"
-				value="#{helloHome.ajax}" />
-			<br />
 			<h:inputText id="inputAjax" value="#{helloHome.ajax}">
 				<f:ajax event="keypress" render="labelInputAjax" />
 				<!-- events: e.g. keypress, valueChange, change -->
 			</h:inputText>
+			<h:outputLabel id="labelInputAjax" for="inputAjax"
+				value="#{helloHome.ajax}" />
 		</h:form>
-
 	</ui:define>
 </ui:composition>

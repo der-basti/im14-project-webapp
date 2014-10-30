@@ -401,15 +401,17 @@
         <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
         <subsystem xmlns="urn:jboss:domain:security:1.2">
             <security-domains>
-            	<security-domain name="mysecuritydomain" cache-type="default">
+            	<security-domain name="wasSecurityDomain" cache-type="default">
                     <authentication>
                         <login-module code="org.jboss.security.auth.spi.DatabaseServerLoginModule" flag="required">
                             <module-option name="dsJndiName" value="java:jboss/datasources/wasDS"/>
-                            <module-option name="principalsQuery" value="select u.password from user u where u.email=?"/>
-                            <module-option name="rolesQuery" value="select g.name as rolename, 'Roles' as rolegroup from user u, group g where u.group_id=g.id and u.email=?"/>
+                            <module-option name="principalsQuery" value="select u.password from was_user u where u.email=?"/>
+                            <module-option name="rolesQuery" value="select r.name as rolename, 'Roles' as rolegroup from was_user u, was_role r, Users_Roles ur where u.id=ur.users_id and ur.roles_id=r.id and u.email=?"/>
                             <module-option name="hashAlgorithm" value="SHA-256"/>
                             <module-option name="hashEncoding" value="base64"/>
                             <module-option name="hashCharset" value="UTF-8"/>
+                            <module-option name="hashUserPassword" value="true"/>
+                            <module-option name="hashStorePassword" value="false"/>
                         </login-module>
                     </authentication>
                 </security-domain>

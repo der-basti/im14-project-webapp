@@ -5,7 +5,7 @@
     http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd"
 	version="6.0">
 
-	<security-domain>mysecuritydomain</security-domain>
+	<security-domain>wasSecurityDomain</security-domain>
 	<!--security-role>
 		<description></description>
 		<principal-name></principal-name>

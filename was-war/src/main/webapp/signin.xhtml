@@ -5,17 +5,27 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/template/template.xhtml">
 
-	<ui:define name="content">
-		<h1><h:outputText value="#{i18n.signinTitle}" /></h1>
+	<ui:param name="pageTitle" value="#{i18n.signinTitle}" />
 
-		<h:form id="frmLogin">
+	<ui:define name="mainContent">
+		<h1>
+			<h:outputText value="#{i18n.signinTitle}" />
+		</h1>
+
+		<h:panelGroup rendered="#{not empty request.userPrincipal}">
+			<h:outputText value="#{i18n.signinPast}" />
+		</h:panelGroup>
+
+		<h:form id="frmLogin" rendered="#{empty request.userPrincipal}">
 			<h:panelGrid columns="2">
 				<h:outputLabel for="email" value="#{i18n.signinEmail}" />
-				<h:inputText id="email" required="true" />
+				<h:inputText id="email" value="#{authHome.email}" required="true" />
 				<h:outputLabel for="password" value="#{i18n.signinPassword}" />
-				<h:inputSecret id="password" required="true" />
+				<h:inputSecret id="password" value="#{authHome.password}"
+					required="true" />
 			</h:panelGrid>
-			<h:commandButton id="btnLogin" value="#{i18n.signinBtn}" />
+			<h:commandButton id="btnLogin" action="#{authHome.authenticate}"
+				value="#{i18n.signinBtn}" />
 		</h:form>
 	</ui:define>
 </ui:composition>

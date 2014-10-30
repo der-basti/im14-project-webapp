@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:param name="pageTitle" value="#{i18n.naviDashboard}" />
+
+	<ui:define name="mainContent">
+		<h1>
+			<h:outputText value="#{i18n.naviDashboard}" />
+		</h1>
+		
+		<h:outputText value="#{i18n.indexWelcome} #{request.userPrincipal}" />
+	</ui:define>
+</ui:composition>

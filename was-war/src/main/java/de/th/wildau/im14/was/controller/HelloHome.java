@@ -6,14 +6,13 @@ import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 
-@Named
-@RequestScoped
 @Getter
 @Setter
-public class HelloHome {
+@Named
+@RequestScoped
+public class HelloHome extends AbstractHome {
+
+	private static final long serialVersionUID = -4422181711706897633L;
 
 	private String ajax = "JSF ajax";
-
-	private String hello = "Personalvermittlung";
-
 }
