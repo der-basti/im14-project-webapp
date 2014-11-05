@@ -37,27 +37,25 @@
 				</h:inputSecret>
 				<h:message id="m_confirm" for="password" />
 
-				<h:outputLabel for="passwordConfirm" value="#{i18n.signupTyp} *" />
+				<!--h:outputLabel for="passwordConfirm" value="#{i18n.signupTyp} *" />
 				<h:selectOneRadio id="selection" value="#{signupHome.user}" required="true">
 					<f:selectItems value="#{signupHome.selectItems}" />
 					<f:ajax event="change" render="details" />
-				</h:selectOneRadio>
+				</h:selectOneRadio-->
 			</h:panelGrid>
 
-			<h:panelGroup id="details">
-				<!-- USER -->
+			<!--h:panelGroup id="details">
+				< USER >
 				<h:panelGrid id="userGroup" columns="3"
 					rendered="#{signupHome.user}">
 					USER
-					<!--ui:include src=""></ui:include>
-					<ui:insert></ui:insert-->
 				</h:panelGrid>
-				<!-- COMPANY -->
+				< COMPANY >
 				<h:panelGrid id="companyGroup" columns="3"
 					rendered="#{not signupHome.user}">
 					COMPANY
 				</h:panelGrid>
-			</h:panelGroup>
+			</h:panelGroup-->
 
 			<h:commandButton id="btnSignup" value="#{i18n.signupBtn}"
 				action="#{signupHome.signup}" />

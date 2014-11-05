@@ -28,11 +28,8 @@
 
 	<session-config>
 		<session-timeout>15</session-timeout>
-		<!--cookie-config>
-			<http-only>true</http-only>
-			<secure>true</secure>
-		</cookie-config>
-		<tracking-mode>COOKIE</tracking-mode-->
+		<!--cookie-config> <http-only>true</http-only> <secure>true</secure> </cookie-config> 
+			<tracking-mode>COOKIE</tracking-mode -->
 	</session-config>
 
 	<welcome-file-list>
@@ -70,6 +67,19 @@
 		<description />
 		<role-name>USER</role-name>
 	</security-role>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.xhtml</location>
+	</error-page>
 
 	<!--error-page> <exception-type>javax.faces.application.ProtectedViewException</exception-type> 
 		<location>/error.jsf</location> </error-page -->

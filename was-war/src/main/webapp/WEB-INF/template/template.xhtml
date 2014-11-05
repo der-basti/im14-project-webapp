@@ -72,17 +72,19 @@
 											data-toggle="dropdown"><i class="fa fa-user fa-fw" />
 												#{request.userPrincipal.name}<b class="caret"></b></a>
 											<ul class="dropdown-menu">
-												<li><a href="./my/dashboard.jsf">#{i18n.naviDashboard}</a></li>
+												<li><a
+													href="/#{helloHome.rootContext}/my/dashboard.jsf">#{i18n.naviDashboard}</a></li>
+												<li><a
+													href="/#{helloHome.rootContext}/my/article/search.jsf">#{i18n.naviArticle}</a></li>
 												<!--li><a href="./secturity/csrfExample.jsf">CSRF</a></li-->
 												<li class="divider"></li>
-												<li><h:commandLink
-														value="#{i18n.naviSignout}"
+												<li><h:commandLink value="#{i18n.naviSignout}"
 														action="#{authHome.logout}" /></li>
 											</ul></li>
 									</c:when>
 									<c:otherwise>
-										<li><a href="./signup.jsf">#{i18n.naviSignup}</a></li>
-										<li><a href="./signin.jsf"><i
+										<li><a href="/#{helloHome.rootContext}/signup.jsf">#{i18n.naviSignup}</a></li>
+										<li><a href="/#{helloHome.rootContext}/signin.jsf"><i
 												class="fa fa-sign-in fa-fw" /> #{i18n.naviSignin}</a></li>
 									</c:otherwise>
 								</c:choose>

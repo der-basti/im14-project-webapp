@@ -8,11 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @MappedSuperclass
-@Getter
-@Setter
 public abstract class BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -4045686726442186942L;
@@ -21,6 +18,7 @@ public abstract class BaseEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Getter
 	private Long id;
 	
 	public abstract String getLabel();

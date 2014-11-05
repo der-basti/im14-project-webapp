@@ -17,3 +17,5 @@ insert into was_user(email, password) values ('john@th-wildau.de', 'dUmSCo+MXew/
 insert into users_roles(users_id, roles_id) values ((select id from was_user where email = 'john@th-wildau.de'), (select id from was_role where name = 'ADMIN'))
 insert into users_roles(users_id, roles_id) values ((select id from was_user where email = 'john@th-wildau.de'), (select id from was_role where name = 'COMPANY'))
 insert into users_roles(users_id, roles_id) values ((select id from was_user where email = 'john@th-wildau.de'), (select id from was_role where name = 'USER'))
+
+insert into was_article(user_id, createDate, content) values ((select id from was_user where email = 'john@th-wildau.de'), CURRENT_TIMESTAMP(), 'Beispiel Artikel von john...')

@@ -11,10 +11,10 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
-@Table(name = BaseEntity.DB_PREFIX + "address")
 @Getter
 @Setter
+@Entity
+@Table(name = BaseEntity.DB_PREFIX + "address")
 public class Address extends BaseEntity {
 
 	private static final long serialVersionUID = -8198571879418446195L;

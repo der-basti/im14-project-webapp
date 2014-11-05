@@ -7,33 +7,35 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 @ManagedBean
 @ViewScoped
 public class AuthHome extends AbstractHome {
 
 	private static final long serialVersionUID = -8167947893012155861L;
 
+	@Getter
+	@Setter
 	private String email;
 
+	@Getter
+	@Setter
 	private String password;
 
 	public String authenticate() {
 		if (!isAuthenticated()) {
 			try {
-				getRequest().login(email, password);
+				getRequest().login(this.email, this.password);
 				addInfoMessage("authHomeSuccess");
-				return "./my/dashboard.xhtml";
+				return redirect("my/dashboard.jsf");
 			} catch (final ServletException e) {
 				addErrorMessage("authHomeFailed");
 			}
 		}
+		// FIXME return codes (success, fail)
 		return "" + isAuthenticated();
 	}
 
@@ -59,7 +61,9 @@ public class AuthHome extends AbstractHome {
 		// externalContext.invalidateSession();
 		// String contextPath = externalContext.getRequestContextPath();
 		// externalContext.redirect(contextPath);
-		return getRootContext();
+
+		// return getRootContext();
+		return redirect("index.jsf");
 	}
 
 	public boolean isAuthenticated() {

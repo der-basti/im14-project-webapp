@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -20,10 +21,10 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
-@Table(name = BaseEntity.DB_PREFIX + "user")
 @Getter
 @Setter
+@Entity
+@Table(name = BaseEntity.DB_PREFIX + "user")
 public class User extends BaseEntity {
 
 	private static final long serialVersionUID = -1103085759456125104L;
@@ -44,8 +45,18 @@ public class User extends BaseEntity {
 	// @ManyToOne(optional = true, targetEntity = Role.class)
 	// private Role group;
 
+	@OneToOne(mappedBy="user")
+	private Article article;
+	
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Comment> comments;
+
+	@OneToMany(mappedBy = "user")
+	private List<PaymentBC> paymentsBC;
+
+	@OneToMany(mappedBy = "user")
+	private List<PaymentCC> paymentsCC;
 
 	@Override
 	public String getLabel() {

@@ -15,6 +15,13 @@
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
+			<!-- http://joda-time.sourceforge.net/contrib/hibernate/userguide.html -->
+			<property name="org.joda.time.contrib.hibernate.PersistentDateTime"
+				value="dateTime" />
+			<!--property name="hibernate.cache.use_query_cache" value="true" /> <property 
+				name="hibernate.cache.use_second_level_cache" value="true" /> <property name="hibernate.cache.use_query_cache" 
+				value="true" /> <property name="hibernate.cache.region.factory_class" value="net.sf.ehcache.hibernate.EhCacheRegionFactory" 
+				/> <property name="hibernate.max_fetch_depth" value="4" / -->
 		</properties>
 	</persistence-unit>
 

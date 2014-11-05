@@ -7,6 +7,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+@Deprecated
 @FacesValidator("confirmValidator")
 public class ConfirmValidator implements Validator {
 

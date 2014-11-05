@@ -5,23 +5,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/template/template.xhtml">
 
-	<ui:param name="pageTitle" value="#{i18n.naviDashboard}" />
+	<ui:param name="pageTitle" value="" />
 
 	<ui:define name="mainContent">
-		<h1>
-			<h:outputText value="#{i18n.naviDashboard}" />
-		</h1>
 
 		<div class="row">
-
 			<div class="col-md-12">
-				<h2>...PROFILE...</h2>
-				<h:outputText value="#{request.userPrincipal}" />
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<h2>...ARTICLES...</h2>
+				FIXME it uses the dashboardHome bean
 				<h:dataTable value="#{dashboardHome.article}" var="item"
 					styleClass="table table-hover">
 					<h:column>
@@ -39,20 +29,6 @@
 						...
 					</h:column>
 				</h:dataTable>
-			</div>
-
-			<div class="col-md-6">
-				<h2>...COMMENTS...</h2>
-				<!--table class="table table-bordered table-hover">
-					<tr>
-						<th>...</th>
-						<th>...</th>
-					</tr>
-					<tr>
-						<td>...</td>
-						<td>...</td>
-					</tr>
-				</table-->
 			</div>
 		</div>
 

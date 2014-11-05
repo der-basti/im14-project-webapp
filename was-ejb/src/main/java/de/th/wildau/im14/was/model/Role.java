@@ -14,10 +14,10 @@ import lombok.ToString;
 
 import org.hibernate.validator.constraints.Length;
 
-@Entity
-@Table(name = BaseEntity.DB_PREFIX + "role")
 @Getter
 @Setter
+@Entity
+@Table(name = BaseEntity.DB_PREFIX + "role")
 @ToString
 public class Role extends BaseEntity {
 

@@ -1,5 +1,6 @@
 package de.th.wildau.im14.was.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -18,6 +19,16 @@ public abstract class AbstractHome implements Serializable {
 
 	@Getter
 	private final String rootContext = "was";
+
+	protected String redirect(final String url) {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("/" + rootContext + "/" + url);
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+		return "success";
+	}
 
 	private String getMessage(final FacesContext facesContext,
 			final String msgKey, final Object... args) {
