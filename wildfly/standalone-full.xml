@@ -128,6 +128,15 @@
             <logger category="jacorb.config">
                 <level name="ERROR"/>
             </logger>
+            <logger category="org.jboss.security">
+                <level name="TRACE"/>
+            </logger>
+            <logger category="org.jboss.as.web.security">
+                <level name="TRACE"/>
+            </logger>
+            <logger category="org.apache.catalina">
+                <level name="TRACE"/>
+            </logger>
             <root-logger>
                 <level name="INFO"/>
                 <handlers>
@@ -401,7 +410,7 @@
         <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
         <subsystem xmlns="urn:jboss:domain:security:1.2">
             <security-domains>
-            	<security-domain name="wasSecurityDomain" cache-type="default">
+                <security-domain name="wasSecurityDomain" cache-type="default">
                     <authentication>
                         <login-module code="org.jboss.security.auth.spi.DatabaseServerLoginModule" flag="required">
                             <module-option name="dsJndiName" value="java:jboss/datasources/wasDS"/>
