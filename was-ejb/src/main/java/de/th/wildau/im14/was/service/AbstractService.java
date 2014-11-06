@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import de.th.wildau.im14.was.model.BaseEntity;
 import de.th.wildau.im14.was.model.User;
 
+//@RolesAllowed({ "ADMIN" })
 public abstract class AbstractService<T extends BaseEntity> implements
 		Serializable {
 

@@ -5,8 +5,7 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://java.sun.com/jsp/jstl/core" contentType="text/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" contentType="text/html"
 	encoding="UTF-8">
 
 	<h:head>
@@ -66,28 +65,25 @@
 												<h:outputText value="#{i18n.naviLanguageEn}" />
 											</h:commandLink></li>
 									</ul></li>
-								<c:choose>
-									<c:when test="#{not empty request.userPrincipal}">
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown"><i class="fa fa-user fa-fw" />
-												#{request.userPrincipal.name}<b class="caret"></b></a>
-											<ul class="dropdown-menu">
-												<li><a
-													href="/#{helloHome.rootContext}/my/dashboard.jsf">#{i18n.naviDashboard}</a></li>
-												<li><a
-													href="/#{helloHome.rootContext}/my/article/search.jsf">#{i18n.naviArticle}</a></li>
-												<!--li><a href="./secturity/csrfExample.jsf">CSRF</a></li-->
-												<li class="divider"></li>
-												<li><h:commandLink value="#{i18n.naviSignout}"
-														action="#{authHome.logout}" /></li>
-											</ul></li>
-									</c:when>
-									<c:otherwise>
-										<li><a href="/#{helloHome.rootContext}/signup.jsf">#{i18n.naviSignup}</a></li>
-										<li><a href="/#{helloHome.rootContext}/signin.jsf"><i
-												class="fa fa-sign-in fa-fw" /> #{i18n.naviSignin}</a></li>
-									</c:otherwise>
-								</c:choose>
+								<ui:fragment rendered="#{not empty request.userPrincipal}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown"><i class="fa fa-user fa-fw" />
+											#{request.userPrincipal.name}<b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li><a href="/#{helloHome.rootContext}/my/dashboard.jsf">#{i18n.naviDashboard}</a></li>
+											<li><a
+												href="/#{helloHome.rootContext}/my/article/search.jsf">#{i18n.naviArticle}</a></li>
+											<!--li><a href="./secturity/csrfExample.jsf">CSRF</a></li-->
+											<li class="divider"></li>
+											<li><h:commandLink value="#{i18n.naviSignout}"
+													action="#{authHome.logout}" /></li>
+										</ul></li>
+								</ui:fragment>
+								<ui:fragment rendered="#{empty request.userPrincipal}">
+									<li><a href="/#{helloHome.rootContext}/signup.jsf">#{i18n.naviSignup}</a></li>
+									<li><a href="/#{helloHome.rootContext}/signin.jsf"><i
+											class="fa fa-sign-in fa-fw" /> #{i18n.naviSignin}</a></li>
+								</ui:fragment>
 							</ul>
 						</div>
 						<!--/.nav-collapse -->

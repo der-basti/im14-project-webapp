@@ -234,7 +234,7 @@
                 </thread-pool>
             </thread-pools>
             <iiop enable-by-default="false" use-qualified-name="false"/>
-            <default-security-domain value="other"/>
+            <default-security-domain value="wasSecurityDomain"/>
             <default-missing-method-permissions-deny-access value="true"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:io:1.1">

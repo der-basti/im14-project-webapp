@@ -25,6 +25,7 @@
 			<type>ejb</type>
 		</dependency>
 
+		<!-- TODO check dependencies -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -76,12 +77,6 @@
 					<fileNameMapping>no-version</fileNameMapping>
 				</configuration>
 			</plugin>
-			<!-- The WildFly plugin deploys your ear to a local WildFly container -->
-			<!-- Due to Maven's lack of intelligence with EARs we need to configure 
-				the wildfly maven plugin to skip deployment for all modules. We then enable 
-				it specifically in the ear module. > <plugin> <groupId>org.wildfly.plugins</groupId> 
-				<artifactId>wildfly-maven-plugin</artifactId> <configuration> <filename>${project.artifactId}.ear</filename> 
-				<skip>false</skip> </configuration> </plugin -->
 		</plugins>
 	</build>
 
