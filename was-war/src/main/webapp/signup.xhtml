@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/template/template.xhtml">
-	
+
 	<ui:param name="pageTitle" value="#{i18n.signupTitle}" />
 
 	<ui:define name="mainContent">
@@ -37,25 +37,35 @@
 				</h:inputSecret>
 				<h:message id="m_confirm" for="password" />
 
-				<!--h:outputLabel for="passwordConfirm" value="#{i18n.signupTyp} *" />
-				<h:selectOneRadio id="selection" value="#{signupHome.user}" required="true">
-					<f:selectItems value="#{signupHome.selectItems}" />
+				<h:outputLabel for="passwordConfirm" value="#{i18n.signupTyp} *" />
+				<h:selectOneRadio id="selection" value="#{signupHome.userType}"
+					required="true">
+					<f:selectItems value="#{signupHome.userSi}" />
 					<f:ajax event="change" render="details" />
-				</h:selectOneRadio-->
-			</h:panelGrid>
+				</h:selectOneRadio>
+				<h:outputText value="" />
 
-			<!--h:panelGroup id="details">
-				< USER >
-				<h:panelGrid id="userGroup" columns="3"
-					rendered="#{signupHome.user}">
-					USER
-				</h:panelGrid>
-				< COMPANY >
-				<h:panelGrid id="companyGroup" columns="3"
-					rendered="#{not signupHome.user}">
-					COMPANY
-				</h:panelGrid>
-			</h:panelGroup-->
+				<h:outputLabel for="street" value="STREET *" />
+				<h:inputText id="street" value="#{signupHome.address.street}"
+					required="true" />
+				<h:message for="street" />
+
+				<h:outputLabel for="streetNumber" value="STREETNUMBER *" />
+				<h:inputText id="streetNumber"
+					value="#{signupHome.address.streetNumber}" required="true" />
+				<h:message for="streetNumber" />
+
+				<h:outputLabel for="plz" value="PLZ *" />
+				<h:inputText id="plz" value="#{signupHome.address.plz}"
+					required="true" />
+				<h:message for="plz" />
+
+				<h:outputLabel for="city" value="CITY *" />
+				<h:inputText id="city" value="#{signupHome.address.city}"
+					required="true" />
+				<h:message for="city" />
+
+			</h:panelGrid>
 
 			<h:commandButton id="btnSignup" value="#{i18n.signupBtn}"
 				action="#{signupHome.signup}" />

@@ -59,6 +59,21 @@
 			<version>1.14.8</version>
 		</dependency>
 
+		<!-- Apache commons utility -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+
+		<!-- Hibernate metadata model generator -->
+		<!--dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-jpamodelgen</artifactId> 
+			<version>4.3.7.Final</version> </dependency -->
+		<!--dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-tools</artifactId> 
+			<version>4.3.1.CR1</version> </dependency -->
+		<!--dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-jpamodelgen</artifactId> 
+			<scope>compile</scope> <optional>true</optional> </dependency -->
+
 		<!-- Test scope dependencies -->
 		<dependency>
 			<groupId>junit</groupId>

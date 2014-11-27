@@ -17,16 +17,10 @@ public class PaymentBC extends PaymentAbstract {
 	private static final long serialVersionUID = 2791988698704556872L;
 
 	@NotBlank
-	private String name;
+	private String iban;
 
 	@NotBlank
-	private String blz;
-
-	@NotBlank
-	private String kto;
-
-	@NotBlank
-	private String bankName;
+	private String bic;
 
 	@Override
 	public String getLabel() {

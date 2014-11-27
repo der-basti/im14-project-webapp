@@ -17,6 +17,13 @@
 		</resource-bundle>
 	</application>
 
+	<faces-config-extension>
+		<facelets-processing>
+			<file-extension>.xhtml</file-extension>
+			<process-as>xhtml</process-as>
+		</facelets-processing>
+	</faces-config-extension>
+
 	<!-- Write your navigation rules here. You are encouraged to use CDI for 
 		creating @Named managed beans. -->
 

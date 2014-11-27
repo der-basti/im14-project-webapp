@@ -3,7 +3,6 @@ package de.th.wildau.im14.was.model;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,21 +43,16 @@ public class User extends BaseEntity {
 	@JoinTable(name = "Users_Roles", joinColumns = { @JoinColumn(name = "users_id") }, inverseJoinColumns = { @JoinColumn(name = "roles_id") })
 	private Set<Role> roles;
 
-	// @ManyToOne(optional = true, targetEntity = Role.class)
-	// private Role group;
-
-	@OneToOne(mappedBy="user")
-	private Article article;
-	
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Comment> comments;
+	// @Getter(value = AccessLevel.NONE)
+	// @Length(min = 24, max = 24)
+	private String activiationKey;
 
 	@OneToMany(mappedBy = "user")
-	private List<PaymentBC> paymentsBC;
+	private List<Article> articles;
 
-	@OneToMany(mappedBy = "user")
-	private List<PaymentCC> paymentsCC;
+	@NotNull
+	@OneToOne(fetch = FetchType.EAGER)
+	private Address address;
 
 	@Override
 	public String getLabel() {

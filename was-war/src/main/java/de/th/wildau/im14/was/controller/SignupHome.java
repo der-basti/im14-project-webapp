@@ -20,6 +20,9 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.Sets;
 import com.google.common.hash.Hashing;
 
+import de.th.wildau.im14.was.model.Address;
+import de.th.wildau.im14.was.model.Role;
+import de.th.wildau.im14.was.model.RoleType;
 import de.th.wildau.im14.was.model.User;
 import de.th.wildau.im14.was.service.UserService;
 
@@ -33,11 +36,11 @@ public class SignupHome extends AbstractHome {
 	private UserService userService;
 
 	@Getter
-	private List<SelectItem> selectItems;
+	private List<SelectItem> userSi;
 
 	@Getter
 	@Setter
-	private boolean user; // company
+	private boolean userType;
 
 	@Getter
 	@Setter
@@ -46,16 +49,27 @@ public class SignupHome extends AbstractHome {
 	@Getter
 	@Setter
 	private String password;
+
 	@Getter
 	@Setter
 	private String passwordConfirm;
 
+	@Getter
+	@Setter
+	private User user;
+
+	@Getter
+	@Setter
+	private Address address;
+
 	@PostConstruct
 	public void init() {
-		this.user = true;
-		this.selectItems = new ArrayList<>();
-		this.selectItems.add(new SelectItem(true, "User"));
-		this.selectItems.add(new SelectItem(false, "Company"));
+		this.userType = true;
+		this.userSi = new ArrayList<>();
+		this.userSi.add(new SelectItem(true, "User"));
+		this.userSi.add(new SelectItem(false, "Company"));
+		this.user = new User();
+		this.address = new Address();
 	}
 
 	@Deprecated
@@ -76,23 +90,31 @@ public class SignupHome extends AbstractHome {
 			return "";
 		}
 
-		User newUser = new User();
-		newUser.setEmail(this.email);
-		newUser.setPassword(Base64.getEncoder().encodeToString(
+		this.user.setPassword(Base64.getEncoder().encodeToString(
 				Hashing.sha256().hashString(this.password, Charsets.UTF_8)
 						.asBytes()));
-		// FIXME new user have all
-		newUser.setRoles(Sets.newHashSet(this.userService.getRoles()));
 
-		this.userService.create(newUser);
+		// define role
+		List<Role> roles = this.userService.getRole(RoleType.USER);
+		if (!this.userType) {
+			roles = this.userService.getRole(RoleType.COMPANY);
+			;
+		}
+		this.user.setRoles(Sets.newHashSet(roles));
+
+		this.userService.create(this.user, this.address);
 		// FIXME add msg
 		reset();
-		// return redirect("index.jsf");
+		// FIXME return redirect("index.jsf");
 		return "";
 	}
 
 	private void reset() {
+		this.user = new User();
+		this.address = new Address();
+		this.userType = true;
 		this.email = "";
 		this.password = "";
+		this.passwordConfirm = "";
 	}
 }

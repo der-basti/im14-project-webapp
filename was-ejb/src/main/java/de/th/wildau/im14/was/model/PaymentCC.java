@@ -12,6 +12,7 @@ import lombok.Setter;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -34,8 +35,12 @@ public class PaymentCC extends PaymentAbstract {
 	@Length(min = 3, max = 255)
 	private String name;
 
+	@NotEmpty
+	@Pattern(regexp = "[0-9]{2}")
 	private String exparationDateMonth;
 
+	@NotEmpty
+	@Pattern(regexp = "[0-9]{4}")
 	private String exparationDateYear;
 
 	@Override

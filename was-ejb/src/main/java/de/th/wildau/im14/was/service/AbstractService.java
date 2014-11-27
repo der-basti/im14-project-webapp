@@ -8,11 +8,13 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.FetchParent;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Root;
 
 import de.th.wildau.im14.was.model.BaseEntity;
 import de.th.wildau.im14.was.model.User;
 
-//@RolesAllowed({ "ADMIN" })
 public abstract class AbstractService<T extends BaseEntity> implements
 		Serializable {
 
@@ -76,17 +78,16 @@ public abstract class AbstractService<T extends BaseEntity> implements
 	// // criteriaQuery.where(criteriaBuilder.equal(types.get("id"), id))
 	// return this.em.createQuery(criteria).getResultList();
 	// }
-	//
-	// protected static <T> void addFetches(Root<T> root, String...
-	// fetchRelations) {
-	// for (String relation : fetchRelations) {
-	// FetchParent<T, T> fetch = root;
-	// for (String pathSegment : relation.split(".")) {
-	// fetch = fetch.fetch(pathSegment, JoinType.LEFT);
-	// }
-	// }
-	// }
-	//
+
+	protected static <T> void addFetches(Root<T> root, String... fetchRelations) {
+		for (String relation : fetchRelations) {
+			FetchParent<T, T> fetch = root;
+			for (String pathSegment : relation.split(".")) {
+				fetch = fetch.fetch(pathSegment, JoinType.LEFT);
+			}
+		}
+	}
+
 	// public T getSingleOrNoneResult(final Long primaryKeyId) {
 	// CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 	// CriteriaQuery<T> criteriaQuery = criteriaBuilder

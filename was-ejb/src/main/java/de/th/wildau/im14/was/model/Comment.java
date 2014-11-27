@@ -3,6 +3,8 @@ package de.th.wildau.im14.was.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -31,11 +33,11 @@ public class Comment extends BaseEntity {
 
 	@NotNull
 	@NotEmpty
-	@Length(min = 1, max = 4095)
+	@Length(min = 1, max = 250)
 	private String content;
-	
-	// @ManyToOne
-	// private List<Article> articles;
+
+	@ManyToOne(targetEntity = Article.class, fetch = FetchType.EAGER)
+	private Article article;
 
 	@Override
 	public String getLabel() {

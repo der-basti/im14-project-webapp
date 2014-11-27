@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:h5="http://java.sun.com/jsf/composite/html5"
+	lang="#{localeBean.language}">
+<head jsf:id="head">
+	<title>WAS | #{empty pageTitle ? '-' : pageTitle}</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="web application security project" />
+	<meta name="author" content="Sebastian Nemak" />
+	<h:outputStylesheet name="css/bootstrap.v.3.2.0.min.css" />
+	<link
+		href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<h:outputStylesheet name="css/style.css" />
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<h:body jsf:id="body">
+	<div class="container">
+
+		<!-- Static navbar -->
+		<form jsf:id="form">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/#{helloHome.rootContext}"><h:outputText
+								value="#{i18n.templateTitle}" /></a>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<!-- left menu -->
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown"><i class="fa fa-language fa-fw"
+									title="#{i18n.naviLanguage}" /><b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><h:commandLink
+											action="#{localeBean.setLanguage('de')}" immediate="true">
+											<f:ajax render="@all" />
+											<h:outputText value="#{i18n.naviLanguageDe}" />
+										</h:commandLink></li>
+									<li><h:commandLink
+											action="#{localeBean.setLanguage('en')}" immediate="true">
+											<f:ajax render="@all" />
+											<h:outputText value="#{i18n.naviLanguageEn}" />
+										</h:commandLink></li>
+								</ul></li>
+							<ui:fragment rendered="#{not empty request.userPrincipal}">
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown"><i class="fa fa-user fa-fw" />
+										#{request.userPrincipal.name}<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="/#{helloHome.rootContext}/my/dashboard.jsf">#{i18n.naviDashboard}</a></li>
+										<li><a
+											href="/#{helloHome.rootContext}/my/article/search.jsf">#{i18n.naviArticle}</a></li>
+										<!--li><a href="./secturity/csrfExample.jsf">CSRF</a></li-->
+										<li class="divider"></li>
+										<li><h:commandLink value="#{i18n.naviSignout}"
+												action="#{authHome.logout}" /></li>
+									</ul></li>
+							</ui:fragment>
+							<ui:fragment rendered="#{empty request.userPrincipal}">
+								<li><a href="/#{helloHome.rootContext}/signup.jsf">#{i18n.naviSignup}</a></li>
+								<li><a href="/#{helloHome.rootContext}/signin.jsf"><i
+										class="fa fa-sign-in fa-fw" /> #{i18n.naviSignin}</a></li>
+							</ui:fragment>
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+				</div>
+				<!--/.container-fluid -->
+			</nav>
+		</form>
+
+		<h:messages id="messages" globalOnly="true" showDetail="false"
+			styleClass="messages" fatalClass="error" errorClass="error"
+			warnClass="warning" infoClass="info" />
+
+		<ui:insert name="mainContent">Template content will be inserted here</ui:insert>
+
+	</div>
+
+	<h:outputScript name="js/jquery.v.1.11.1.min.js" />
+	<h:outputScript name="js/bootstrap.v.3.2.0.min.js" />
+	<!--h:outputScript target="head">
+            // Add the $() function
+            $ = jQuery;
+            $(document).ready(function () {
+                jQuery.noConflict();
+            });
+        </h:outputScript-->
+
+</h:body>
+</f:view>
+</html>

@@ -17,7 +17,6 @@ public class DashboardHome extends AbstractHome{
 	private ArticleService articleService;
 	
 	public List<Article> getArticle() {
-		// FIXME return only articles from this user
 		return this.articleService.findMyArticlesOrderedCreateDate();
 	}
 }

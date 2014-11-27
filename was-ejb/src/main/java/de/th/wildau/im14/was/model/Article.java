@@ -1,8 +1,11 @@
 package de.th.wildau.im14.was.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -33,9 +36,9 @@ public class Article extends BaseEntity {
 	@NotEmpty
 	@Length(min = 1, max = 1023)
 	private String content;
-	
-	// @OneToMany//(targetEntity = Comment.class)
-	// private List<Comment> comments;
+
+	@OneToMany(targetEntity = Comment.class, mappedBy = "article", fetch = FetchType.EAGER)
+	private List<Comment> comments;
 
 	@Override
 	public String getLabel() {

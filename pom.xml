@@ -118,8 +118,14 @@
 					<configuration>
 						<source>${maven.compiler.source}</source>
 						<target>${maven.compiler.target}</target>
+						<!--compilerArguments> <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor> 
+							</compilerArguments -->
+						<!--compilerArgument>-proc:none</compilerArgument-->
 					</configuration>
 				</plugin>
+				<!-- https://docs.jboss.org/hibernate/jpamodelgen/1.0/reference/en-US/html_single/ -->
+				<!-- https://stackoverflow.com/questions/3037593/how-to-generate-jpa-2-0-metamodel -->
+				<!-- http://hibernate.org/orm/tooling/ -->
 			</plugins>
 		</pluginManagement>
 	</build>
