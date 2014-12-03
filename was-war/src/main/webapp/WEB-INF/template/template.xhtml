@@ -9,12 +9,11 @@
 	encoding="UTF-8">
 
 	<h:head>
-		<title>WAS | #{empty pageTitle ? '-' : pageTitle}</title>
+		<title>#{i18n.templateTitle} | #{empty pageTitle ? '-' : pageTitle}</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="web application security project" />
-		<meta name="author" content="Sebastian Nemak" />
 		<h:outputStylesheet name="css/bootstrap.v.3.2.0.min.css" />
 		<link
 			href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
@@ -32,7 +31,7 @@
 		<div class="container">
 
 			<!-- Static navbar -->
-			<h:form>
+			<h:form id="frmNavi">
 				<div class="navbar navbar-default" role="navigation">
 					<div class="container-fluid">
 						<div class="navbar-header">
@@ -42,12 +41,13 @@
 									class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="/#{helloHome.rootContext}"><h:outputText
+							<a class="navbar-brand" href="/#{home.rootContext}"><h:outputText
 									value="#{i18n.templateTitle}" /></a>
 						</div>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
 								<!-- left menu -->
+								<li><a href="/#{home.rootContext}/browse.jsf">#{i18n.naviBrowse}</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -70,18 +70,18 @@
 										data-toggle="dropdown"><i class="fa fa-user fa-fw" />
 											#{request.userPrincipal.name}<b class="caret"></b></a>
 										<ul class="dropdown-menu">
-											<li><a href="/#{helloHome.rootContext}/my/dashboard.jsf">#{i18n.naviDashboard}</a></li>
+											<li><a href="/#{home.rootContext}/my/dashboard.jsf">#{i18n.naviDashboard}</a></li>
 											<li><a
 												href="/#{helloHome.rootContext}/my/article/search.jsf">#{i18n.naviArticle}</a></li>
 											<!--li><a href="./secturity/csrfExample.jsf">CSRF</a></li-->
 											<li class="divider"></li>
 											<li><h:commandLink value="#{i18n.naviSignout}"
-													action="#{authHome.logout}" /></li>
+													action="#{signinHome.logout}" /></li>
 										</ul></li>
 								</ui:fragment>
 								<ui:fragment rendered="#{empty request.userPrincipal}">
-									<li><a href="/#{helloHome.rootContext}/signup.jsf">#{i18n.naviSignup}</a></li>
-									<li><a href="/#{helloHome.rootContext}/signin.jsf"><i
+									<li><a href="/#{home.rootContext}/signup.jsf">#{i18n.naviSignup}</a></li>
+									<li><a href="/#{home.rootContext}/signin.jsf"><i
 											class="fa fa-sign-in fa-fw" /> #{i18n.naviSignin}</a></li>
 								</ui:fragment>
 							</ul>

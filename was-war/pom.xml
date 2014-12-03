@@ -104,6 +104,12 @@
 			</dependency> <dependency> <groupId>org.jboss.spec.javax.websocket</groupId> 
 			<artifactId>jboss-websocket-api_1.0_spec</artifactId> </dependency -->
 
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

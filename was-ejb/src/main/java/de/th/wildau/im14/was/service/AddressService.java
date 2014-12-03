@@ -9,4 +9,8 @@ public class AddressService extends AbstractService<Address> {
 
 	private static final long serialVersionUID = 1299878168414288477L;
 
+	@Override
+	public void create(Address entity) {
+		super.create(entity);
+	}
 }

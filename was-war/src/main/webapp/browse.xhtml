@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:param name="pageTitle" value="#{i18n.browseTitle}" />
+
+	<ui:define name="mainContent">
+
+		<h1>#{i18n.browseTitle}</h1>
+
+		<h:form id="form">
+			<p:dataTable id="basicItemTable" var="item"
+				value="#{browseHome.articles}" rows="5" paginator="true"
+				rowsPerPageTemplate="5,10,15,50"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowKey="#{item.id}">
+				<p:column headerText="DATE" style="width:180px">
+					<h:outputText value="#{item.createDate}">
+						<f:convertDateTime type="both" timeStyle="short"
+							locale="#{localeBean.language}" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="USER">
+					#{item.user.email}
+				</p:column>
+				<p:column headerText="TITLE">
+					#{item.title}
+				</p:column>
+				<!--p:column headerText="CONTENT">
+					#{item.content}
+				</p:column-->
+				<p:column headerText="COMMENTS" style="width:120px">
+					#{item.comments.size()}
+				</p:column>
+				<p:column style="width:55px">
+					<p:commandButton icon="ui-icon-search" title="View"
+						action="#{browseHome.navView}">
+						<f:param name="item" value="#{item.id}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

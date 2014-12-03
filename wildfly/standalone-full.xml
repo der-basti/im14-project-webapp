@@ -34,6 +34,7 @@
 
     <management>
         <security-realms>
+<!-- define https realm -->
             <security-realm name="httpsRealm">
                 <server-identities>
                     <ssl>
@@ -97,6 +98,7 @@
     <profile>
         <subsystem xmlns="urn:jboss:domain:logging:2.0">
             <console-handler name="CONSOLE">
+<!-- console log level -->
                 <level name="INFO"/>
                 <formatter>
                     <named-formatter name="COLOR-PATTERN"/>
@@ -128,6 +130,7 @@
             <logger category="jacorb.config">
                 <level name="ERROR"/>
             </logger>
+<!-- security logger -->
             <logger category="org.jboss.security">
                 <level name="TRACE"/>
             </logger>
@@ -138,6 +141,7 @@
                 <level name="TRACE"/>
             </logger>
             <root-logger>
+<!-- root log level -->
                 <level name="INFO"/>
                 <handlers>
                     <handler name="CONSOLE"/>
@@ -161,6 +165,7 @@
             </thread-pool>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:datasources:2.0">
+<!-- default h2 datasource -->
             <datasources>
                 <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
                     <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
@@ -234,6 +239,7 @@
                 </thread-pool>
             </thread-pools>
             <iiop enable-by-default="false" use-qualified-name="false"/>
+<!-- set default security domain -->
             <default-security-domain value="wasSecurityDomain"/>
             <default-missing-method-permissions-deny-access value="true"/>
         </subsystem>
@@ -314,6 +320,10 @@
         <subsystem xmlns="urn:jboss:domain:mail:2.0">
             <mail-session name="default" jndi-name="java:jboss/mail/Default">
                 <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            </mail-session>
+<!-- define mail -->
+            <mail-session name="java:jboss/mail/wasMail" debug="true" jndi-name="java:jboss/mail/wasMail">
+                <smtp-server outbound-socket-binding-ref="was-mail-smtp" ssl="true" username="USERNAME" password="PASSWORD"/>
             </mail-session>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:messaging:2.0">
@@ -410,6 +420,7 @@
         <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
         <subsystem xmlns="urn:jboss:domain:security:1.2">
             <security-domains>
+<!-- define the security domain -->
                 <security-domain name="wasSecurityDomain" cache-type="default">
                     <authentication>
                         <login-module code="org.jboss.security.auth.spi.DatabaseServerLoginModule" flag="required">
@@ -458,6 +469,7 @@
             <buffer-cache name="default"/>
             <server name="default-server">
                 <http-listener name="default" socket-binding="http"/>
+<!-- https listener -->
                 <https-listener name="default-https" socket-binding="https" security-realm="httpsRealm"/>
                 <host name="default-host" alias="localhost">
                     <location name="/" handler="welcome-content"/>
@@ -506,6 +518,7 @@
         <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9993}"/>
         <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
         <socket-binding name="http" port="${jboss.http.port:8080}"/>
+<!-- https binding sould be set -->
         <socket-binding name="https" port="${jboss.https.port:8443}"/>
         <socket-binding name="jacorb" interface="unsecure" port="3528"/>
         <socket-binding name="jacorb-ssl" interface="unsecure" port="3529"/>
@@ -514,6 +527,10 @@
         <socket-binding name="txn-status-manager" port="4713"/>
         <outbound-socket-binding name="mail-smtp">
             <remote-destination host="localhost" port="25"/>
+        </outbound-socket-binding>
+<!-- smtp mail binding -->
+        <outbound-socket-binding name="was-mail-smtp">
+            <remote-destination host="smtp.MAILHOST.com" port="465"/>
         </outbound-socket-binding>
     </socket-binding-group>
 

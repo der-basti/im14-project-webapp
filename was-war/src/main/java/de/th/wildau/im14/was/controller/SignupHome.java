@@ -13,6 +13,8 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,6 +50,7 @@ public class SignupHome extends AbstractHome {
 
 	@Getter
 	@Setter
+	// TODO validate
 	private String password;
 
 	@Getter
@@ -89,24 +92,22 @@ public class SignupHome extends AbstractHome {
 			addErrorMessage("signupMsgNotEquals");
 			return "";
 		}
-
+		this.user.setEmail(this.email);
+		this.user.setPasswordSalt(RandomStringUtils.randomAlphanumeric(20));
 		this.user.setPassword(Base64.getEncoder().encodeToString(
-				Hashing.sha256().hashString(this.password, Charsets.UTF_8)
-						.asBytes()));
-
-		// define role
+				Hashing.sha256()
+						.hashString(
+								this.password + this.user.getPasswordSalt(),
+								Charsets.UTF_8).asBytes()));
 		List<Role> roles = this.userService.getRole(RoleType.USER);
 		if (!this.userType) {
 			roles = this.userService.getRole(RoleType.COMPANY);
-			;
 		}
 		this.user.setRoles(Sets.newHashSet(roles));
-
 		this.userService.create(this.user, this.address);
-		// FIXME add msg
+		addInfoMessage("accountActivateEmailSend");
 		reset();
-		// FIXME return redirect("index.jsf");
-		return "";
+		return redirectToRoot();
 	}
 
 	private void reset() {

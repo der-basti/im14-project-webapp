@@ -1,4 +1,4 @@
-package de.th.wildau.im14.was.util;
+package de.th.wildau.im14.was.tmp;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

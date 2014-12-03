@@ -11,17 +11,42 @@
 		<h1>
 			<h:outputText value="#{i18n.naviDashboard}" />
 		</h1>
+		
+		
+		<h:dataTable var="_user" value="#{browseHome.users}"
+			rendered="#{not empty browseHome.users}"
+			styleClass="table table-striped">
+			<h:column>
+				<f:facet name="header">E-Mail</f:facet>
+                #{_user.email}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Password</f:facet>
+                #{_user.password}
+            </h:column>
+            <h:column>
+				<f:facet name="header">Password salt</f:facet>
+                #{_user.passwordSalt}
+            </h:column>
+		</h:dataTable>
 
 		<div class="row">
 
 			<div class="col-md-12">
-				<h2>...PROFILE...</h2>
-				<h:outputText value="#{request.userPrincipal}" />
+				<h2>PROFILE</h2>
+				<ul>
+					<li>#{request.userPrincipal}</li>
+					<li>UPDATE ADDRESS</li>
+					<li>CHANGE PASSWORD</li>
+					<li>RESET PASSWORD</li>
+					<li>CHANGE EMAIL</li>
+				</ul>
+				
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<h2>...ARTICLES...</h2>
+				<h2>ARTICLES</h2>
 				<h:dataTable value="#{dashboardHome.article}" var="item"
 					styleClass="table table-hover">
 					<h:column>
@@ -42,7 +67,7 @@
 			</div>
 
 			<div class="col-md-6">
-				<h2>...COMMENTS...</h2>
+				<h2>COMMENTS</h2>
 				<!--table class="table table-bordered table-hover">
 					<tr>
 						<th>...</th>

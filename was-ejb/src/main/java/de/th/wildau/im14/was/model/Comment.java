@@ -20,7 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Setter
 @Entity
 @Table(name = BaseEntity.DB_PREFIX + "comment")
-public class Comment extends BaseEntity {
+public class Comment extends BaseEntity<Comment> {
 
 	private static final long serialVersionUID = -3911349965530652599L;
 

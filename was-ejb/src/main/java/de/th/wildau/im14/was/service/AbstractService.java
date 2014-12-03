@@ -8,14 +8,18 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.FetchParent;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang3.StringUtils;
+
 import de.th.wildau.im14.was.model.BaseEntity;
 import de.th.wildau.im14.was.model.User;
 
-public abstract class AbstractService<T extends BaseEntity> implements
+public abstract class AbstractService<T extends BaseEntity<T>> implements
 		Serializable {
 
 	private static final long serialVersionUID = 5199886820301686035L;
@@ -30,13 +34,26 @@ public abstract class AbstractService<T extends BaseEntity> implements
 	protected EntityManager em;
 
 	@Inject
-	protected Event<T> eventSrc;
+	private Event<T> eventSrc;
 
-	protected Class<T> classType;
+	// private Class<T> classType;
+
+	@Deprecated
+	protected CriteriaQuery<T> getCriteriaQuery() {
+		CriteriaBuilder cb = this.em.getCriteriaBuilder();
+		// return cb.createQuery(classType.getClass());
+		return null;
+	}
+
+	@Deprecated
+	protected Root<T> getRoot() {
+		// return getCriteriaQuery().from(T);
+		return null;
+	}
 
 	protected User getCurrentUser() {
-		if (this.principal == null || this.principal.getName() == null
-				|| this.principal.getName().isEmpty()
+		if (this.principal == null
+				|| StringUtils.isEmpty(this.principal.getName())
 				|| this.principal.getName() == "anonymous") {
 			return null;
 		}
@@ -104,20 +121,20 @@ public abstract class AbstractService<T extends BaseEntity> implements
 	// return result.get(0);
 	// }
 
-	public void delete(final T entity) {
+	protected void delete(final T entity) {
 		this.log.info("delete: " + entity);
 		this.em.remove(entity);
 		this.eventSrc.fire(entity);
 	}
 
-	public T update(final T entity) {
+	protected T merge(final T entity) {
 		this.log.info("update: " + entity);
 		T result = this.em.merge(entity);
 		this.eventSrc.fire(entity);
 		return result;
 	}
 
-	public void create(final T entity) {
+	protected void create(final T entity) {
 		this.log.info("create: " + entity);
 		this.em.persist(entity);
 		this.eventSrc.fire(entity);

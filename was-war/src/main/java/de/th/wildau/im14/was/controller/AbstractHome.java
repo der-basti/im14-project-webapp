@@ -6,26 +6,41 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
+import de.th.wildau.im14.was.util.May;
 import lombok.Getter;
 
 public abstract class AbstractHome implements Serializable {
 
 	private static final long serialVersionUID = -7243694648872793544L;
 
+	@Inject
+	protected Logger log;
+
+	@Inject
+	protected May may;
+
 	@Getter
 	private final String rootContext = "was";
 
-	protected String redirect(final String url) {
+	protected String redirectToRoot() {
+		return redirect("");
+	}
+
+	protected String redirect(final String urlFromRootContext) {
 		try {
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("/" + rootContext + "/" + url);
+					.redirect("/" + rootContext + "/" + urlFromRootContext);
 		} catch (final IOException e) {
 			e.printStackTrace();
+			return "fail";
 		}
 		return "success";
 	}
@@ -59,6 +74,13 @@ public abstract class AbstractHome implements Serializable {
 		context.addMessage(null,
 				new FacesMessage(severity, getMessage(context, message, args),
 						null));
+	}
+
+	protected HttpServletRequest getRequest() {
+		Object request = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		return request instanceof HttpServletRequest ? (HttpServletRequest) request
+				: null;
 	}
 
 	protected String getParam(final String param) {

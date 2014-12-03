@@ -15,10 +15,21 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Setter
 @Entity
 @Table(name = BaseEntity.DB_PREFIX + "address")
-public class Address extends BaseEntity {
+public class Address extends BaseEntity<Address> {
 
 	private static final long serialVersionUID = -8198571879418446195L;
 
+	@Size(max = 31)
+	private String title;
+	
+	@NotEmpty
+	@Size(min = 1, max = 63)
+	private String firstName;
+	
+	@NotEmpty
+	@Size(min = 1, max = 63)
+	private String lastName;
+	
 	@NotEmpty
 	@Size(min = 2, max = 255)
 	private String street;

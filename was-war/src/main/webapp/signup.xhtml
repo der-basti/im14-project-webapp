@@ -12,63 +12,138 @@
 			<h:outputText value="#{i18n.signupTitle}" />
 		</h1>
 
-		<h:form id="frmSignup">
-			<h:panelGrid columns="3">
-				<h:outputLabel for="email" value="#{i18n.signupEmail} *" />
-				<h:inputText id="email" value="#{signupHome.email}" required="true" />
-				<h:message for="email" />
+		<h:form id="frmSignup" rendered="#{empty request.userPrincipal}"
+			styleClass="form-horizontal" role="form">
+			<div class="form-group">
+				<h:outputLabel for="email" value="#{i18n.signupEmail} *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="email" value="#{signupHome.email}" required="true"
+						styleClass="form-control" />
+					<h:message for="email" />
+				</div>
+			</div>
 
-				<h:outputLabel for="password" value="#{i18n.signupPassword} *" />
-				<h:inputSecret id="password" value="#{signupHome.password}"
-					required="true">
-					<!--f:validator validatorId="confirmValidator" />
+			<div class="form-group">
+				<h:outputLabel for="password" value="#{i18n.signupPassword} *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputSecret id="password" value="#{signupHome.password}"
+						required="true" styleClass="form-control">
+						<!--f:validator validatorId="confirmValidator" />
 					<f:attribute name="confirm"
 						value="#{signupHome.passwordConfirm}" />
 					<f:ajax event="blur" execute="password confirm" render="m_password" /-->
-				</h:inputSecret>
-				<h:message id="m_password" for="password" />
+					</h:inputSecret>
+					<h:message id="m_password" for="password" />
+				</div>
+			</div>
 
+			<div class="form-group">
 				<h:outputLabel for="passwordConfirm"
-					value="#{i18n.signupPasswordConfirm} *" />
-				<h:inputSecret id="confirm" value="#{signupHome.passwordConfirm}"
-					required="true">
-					<!--f:ajax event="blur" execute="password confirm"
+					value="#{i18n.signupPasswordConfirm} *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputSecret id="confirm" value="#{signupHome.passwordConfirm}"
+						required="true" styleClass="form-control">
+						<!--f:ajax event="blur" execute="password confirm"
 						render="m_password m_confirm" /-->
-				</h:inputSecret>
-				<h:message id="m_confirm" for="password" />
+					</h:inputSecret>
+					<h:message id="m_confirm" for="password" />
+				</div>
+			</div>
 
-				<h:outputLabel for="passwordConfirm" value="#{i18n.signupTyp} *" />
-				<h:selectOneRadio id="selection" value="#{signupHome.userType}"
-					required="true">
-					<f:selectItems value="#{signupHome.userSi}" />
-					<f:ajax event="change" render="details" />
-				</h:selectOneRadio>
-				<h:outputText value="" />
+			<div class="form-group">
+				<h:outputLabel for="passwordConfirm" value="#{i18n.signupTyp} *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:selectOneRadio id="selection" value="#{signupHome.userType}"
+						required="true">
+						<f:selectItems value="#{signupHome.userSi}" />
+						<f:ajax event="change" render="details" />
+					</h:selectOneRadio>
+				</div>
+			</div>
 
-				<h:outputLabel for="street" value="STREET *" />
-				<h:inputText id="street" value="#{signupHome.address.street}"
-					required="true" />
-				<h:message for="street" />
+			<div class="form-group">
+				<h:outputLabel for="title" value="TITLE"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="title" value="#{signupHome.address.title}"
+						styleClass="form-control" />
+					<h:message for="title" />
+				</div>
+			</div>
 
-				<h:outputLabel for="streetNumber" value="STREETNUMBER *" />
-				<h:inputText id="streetNumber"
-					value="#{signupHome.address.streetNumber}" required="true" />
-				<h:message for="streetNumber" />
+			<div class="form-group">
+				<h:outputLabel for="firstName" value="FIRSTNAME *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="firstName" value="#{signupHome.address.firstName}"
+						required="true" styleClass="form-control" />
+					<h:message for="firstName" />
+				</div>
+			</div>
 
-				<h:outputLabel for="plz" value="PLZ *" />
-				<h:inputText id="plz" value="#{signupHome.address.plz}"
-					required="true" />
-				<h:message for="plz" />
+			<div class="form-group">
+				<h:outputLabel for="lastName" value="LASTNAME *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="lastName" value="#{signupHome.address.lastName}"
+						required="true" styleClass="form-control" />
+					<h:message for="lastName" />
+				</div>
+			</div>
 
-				<h:outputLabel for="city" value="CITY *" />
-				<h:inputText id="city" value="#{signupHome.address.city}"
-					required="true" />
-				<h:message for="city" />
+			<div class="form-group">
+				<h:outputLabel for="street" value="STREET *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="street" value="#{signupHome.address.street}"
+						required="true" styleClass="form-control" />
+					<h:message for="street" />
+				</div>
+			</div>
 
-			</h:panelGrid>
+			<div class="form-group">
+				<h:outputLabel for="streetNumber" value="STREETNUMBER *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="streetNumber"
+						value="#{signupHome.address.streetNumber}" required="true"
+						styleClass="form-control" />
+					<h:message for="streetNumber" />
+				</div>
+			</div>
 
-			<h:commandButton id="btnSignup" value="#{i18n.signupBtn}"
-				action="#{signupHome.signup}" />
+			<div class="form-group">
+				<h:outputLabel for="plz" value="PLZ *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="plz" value="#{signupHome.address.plz}"
+						required="true" styleClass="form-control" />
+					<h:message for="plz" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel for="city" value="CITY *"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="city" value="#{signupHome.address.city}"
+						required="true" styleClass="form-control" />
+					<h:message for="city" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<h:commandButton id="btnSignup" value="#{i18n.signupBtn}"
+						action="#{signupHome.signup}" styleClass="btn btn-default" />
+				</div>
+			</div>
+
 		</h:form>
+
 	</ui:define>
 </ui:composition>

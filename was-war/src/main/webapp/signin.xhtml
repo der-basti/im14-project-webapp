@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/template/template.xhtml">
 
 	<ui:param name="pageTitle" value="#{i18n.signinTitle}" />
@@ -16,40 +17,31 @@
 			<h:outputText value="#{i18n.signinPast}" />
 		</h:panelGroup>
 
-		<h:form id="frmLogin" rendered="#{empty request.userPrincipal}">
-			<h:panelGrid columns="2">
-				<h:outputLabel for="email" value="#{i18n.signinEmail}" />
-				<h:inputText id="email" value="#{authHome.email}" required="true" />
-				<h:outputLabel for="password" value="#{i18n.signinPassword}" />
-				<h:inputSecret id="password" value="#{authHome.password}"
-					required="true" />
-			</h:panelGrid>
-			<h:commandButton id="btnLogin" action="#{authHome.authenticate}"
-				value="#{i18n.signinBtn}" />
+		<h:form id="frmSignin" rendered="#{empty request.userPrincipal}"
+			styleClass="form-horizontal" role="form">
+			<div class="form-group">
+				<h:outputLabel for="email" value="#{i18n.signinEmail}"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputText id="email" value="#{signinHome.email}" required="true"
+						styleClass="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="password" value="#{i18n.signinPassword}"
+					styleClass="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<h:inputSecret id="password" value="#{signinHome.password}"
+						required="true" styleClass="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<h:commandButton id="btnLogin" action="#{signinHome.authenticate}"
+						value="#{i18n.signinBtn}" styleClass="btn btn-default" />
+				</div>
+			</div>
 		</h:form>
 		
-		<h1>TEMP</h1>
-		<h:dataTable var="_user" value="#{userHome.users}"
-			rendered="#{not empty userHome.users}"
-			styleClass="table table-striped">
-			<h:column>
-				<f:facet name="header">E-Mail</f:facet>
-                #{_user.email}
-            </h:column>
-            <h:column>
-				<f:facet name="header">Roles</f:facet>
-				#{userHome.printRoles(_user.roles)}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Password</f:facet>
-                #{_user.password}
-            </h:column>
-            <h:column>
-				<f:facet name="header">Address</f:facet>
-                #{_user.address}
-            </h:column>
-			<f:facet name="footer">footer</f:facet>
-		</h:dataTable>
-
 	</ui:define>
 </ui:composition>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+	
+	<f:metadata>
+		<f:viewParam name="email" value="#{activationHome.email}" required="true" />
+		<f:viewParam name="key" value="#{activationHome.key}" required="true" />
+		<f:event type="preRenderView" listener="#{activationHome.init}" />
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="ACTIVATE" />
+
+	<ui:define name="mainContent">
+
+		<h1>ACTIVATE</h1>
+		
+	</ui:define>
+</ui:composition>

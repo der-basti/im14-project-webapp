@@ -14,7 +14,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,9 +25,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Setter
 @Entity
 @Table(name = BaseEntity.DB_PREFIX + "user")
-public class User extends BaseEntity {
+public class User extends BaseEntity<User> {
 
 	private static final long serialVersionUID = -1103085759456125104L;
+
+	private final String SALT = "";
 
 	@Email
 	@Length(max = 255)
@@ -37,14 +38,24 @@ public class User extends BaseEntity {
 
 	@NotEmpty
 	@Length(min = 8, max = 255)
+	// @Getter(value = AccessLevel.NONE)
 	private String password;
+
+	// FIXME see below - setPassword() method
+	// https://docs.jboss.org/author/display/WFLY8/Security+Realms
+	// https://developer.jboss.org/thread/43874?start=0&tstart=0
+	// https://stackoverflow.com/questions/16598322/jboss-salted-databaseserverloginmodule-on-as-7-1
+	// https://developer.jboss.org/wiki/JBossAS7SecuringPasswords
+	// http://blog.eisele.net/2012/07/glassfish-jdbc-security-with-salted.html
+	@NotEmpty
+	@Length(min = 20, max = 20)
+	private String passwordSalt;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Users_Roles", joinColumns = { @JoinColumn(name = "users_id") }, inverseJoinColumns = { @JoinColumn(name = "roles_id") })
 	private Set<Role> roles;
 
-	// @Getter(value = AccessLevel.NONE)
-	// @Length(min = 24, max = 24)
+	@Length(max = 32)
 	private String activiationKey;
 
 	@OneToMany(mappedBy = "user")
@@ -53,6 +64,11 @@ public class User extends BaseEntity {
 	@NotNull
 	@OneToOne(fetch = FetchType.EAGER)
 	private Address address;
+
+	// FIXME handle SALT on backing bean
+	// public void setPassword(final String password) {
+	// this.password = SALT + password;
+	// }
 
 	@Override
 	public String getLabel() {

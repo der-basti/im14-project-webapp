@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:param name="pageTitle" value="#{i18n.browseTitle}" />
+
+	<ui:define name="mainContent">
+
+		<h1>VIEW</h1>
+		
+		TODO back link
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<h:outputLabel styleClass="control-label">USER</h:outputLabel>
+				</div>
+				<div class="col-sm-10">
+					#{browseViewHome.article.user.email}
+					<br/>
+					#{browseViewHome.article.user.address.title} #{browseViewHome.article.user.address.firstName} #{browseViewHome.article.user.address.lastName}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<h:outputLabel styleClass="control-label">CREATEDATE</h:outputLabel>
+				</div>
+				<div class="col-sm-10">
+					<h:outputText value="#{browseViewHome.article.createDate}">
+						<f:convertDateTime type="both" timeStyle="short"
+							locale="#{localeBean.language}" />
+					</h:outputText>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<h:outputLabel styleClass="control-label">TITLE</h:outputLabel>
+				</div>
+				<div class="col-sm-10">#{browseViewHome.article.title}</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<h:outputLabel styleClass="control-label">CONTENT</h:outputLabel>
+				</div>
+				<div class="col-sm-10">#{browseViewHome.article.content}</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-2">
+					<h:outputLabel styleClass="control-label">COMMENTS</h:outputLabel>
+				</div>
+				<div class="col-sm-10">
+					<ui:repeat value="#{browseViewHome.article.comments}" var="item">
+						<div class="row">
+							<div class="col-sm-2">
+								<strong>#{item.user.email}<br /> <h:outputText
+										value="#{item.createDate}">
+										<f:convertDateTime type="date" locale="#{localeBean.language}" />
+									</h:outputText>
+								</strong>
+							</div>
+							<div class="col-sm-6">#{item.content}</div>
+						</div>
+					</ui:repeat>
+				</div>
+			</div>
+			TODO add new comment
+		</div>
+
+	</ui:define>
+</ui:composition>
